@@ -11,16 +11,16 @@ import java.util.Arrays;
 @Configuration
 public class Instantiation implements CommandLineRunner {
     @Autowired
-    private UserRepository repo;
+    private UserRepository userReposiroty;
 
     @Override
     public void run(String... args) throws Exception {
-        repo.deleteAll();
+        userReposiroty.deleteAll();
 
-        repo.saveAll(Arrays.asList(
-            new User(null, "Maria Brown", "maria@gmail.com"),
-            new User(null, "Alex Green", "alex@gmail.com"),
-            new User(null, "Bob Grey", "bob@gmail.com")
-        ));
+        User maria = new User(null, "Maria Brown", "maria@gmail.com");
+        User alex = new User(null, "Alex Green", "alex@gmail.com");
+        User bob = new User(null, "Bob Grey", "bob@gmail.com");
+
+        userReposiroty.saveAll(Arrays.asList(maria, alex, bob));
     }
 }
