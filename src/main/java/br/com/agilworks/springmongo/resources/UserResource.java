@@ -1,5 +1,6 @@
 package br.com.agilworks.springmongo.resources;
 
+import br.com.agilworks.springmongo.domain.Post;
 import br.com.agilworks.springmongo.domain.User;
 import br.com.agilworks.springmongo.dto.UserDTO;
 import br.com.agilworks.springmongo.service.UserService;
@@ -57,5 +58,12 @@ public class UserResource {
         obj.setId(id);
         userService.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value="/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User obj = userService.findById(id);
+
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 }
